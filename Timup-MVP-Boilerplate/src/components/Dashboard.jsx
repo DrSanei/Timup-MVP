@@ -1,21 +1,24 @@
-import React from 'react';
-import StartupCard from './StartupCard';
+import React from 'react'
+import StartupCard from './StartupCard'
 
-const Dashboard = () => {
+const Dashboard = ({ xp, tokens }) => {
   const dummyStartups = [
-    { name: "MediTrack", category: "HealthTech", value: 2.5, successRate: 85 },
-    { name: "FinNova", category: "FinTech", value: 3.1, successRate: 72 },
-    { name: "GoldChain", category: "Marketplace", value: 1.8, successRate: 66 },
-  ];
+    { id: "meditrack", name: "MediTrack", category: "HealthTech", value: 2.5, successRate: 85 },
+    { id: "finnova", name: "FinNova", category: "FinTech", value: 3.1, successRate: 72 },
+    { id: "goldchain", name: "GoldChain", category: "Marketplace", value: 1.8, successRate: 66 }
+  ]
 
   return (
     <div>
-      <h2>Startups Market</h2>
+      <h2>Startup Market</h2>
+      <p><strong>XP:</strong> {xp} | <strong>Tokens:</strong> {tokens}</p>
       <div className="startup-grid">
-        {dummyStartups.map((s, i) => <StartupCard key={i} {...s} />)}
+        {dummyStartups.map((s) => (
+          <StartupCard key={s.id} {...s} />
+        ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

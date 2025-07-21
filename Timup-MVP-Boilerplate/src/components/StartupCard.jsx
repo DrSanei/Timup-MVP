@@ -1,13 +1,19 @@
-import React from 'react';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const StartupCard = ({ name, category, value, successRate }) => (
-  <div className="startup-card">
-    <h3>{name}</h3>
-    <p>Category: {category}</p>
-    <p>Estimated Value: ${value}M</p>
-    <p>Success Rate: {successRate}%</p>
-    <button>View Details</button>
-  </div>
-);
+const StartupCard = ({ id, name, category, value }) => {
+  const navigate = useNavigate()
 
-export default StartupCard;
+  return (
+    <div className="startup-card">
+      <h3>{name}</h3>
+      <p>Category: {category}</p>
+      <p>Valuation: ${value}M</p>
+      <button onClick={() => navigate(`/startup/${id}`)}>
+        View Details
+      </button>
+    </div>
+  )
+}
+
+export default StartupCard

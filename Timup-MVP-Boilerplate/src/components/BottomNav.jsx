@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const BottomNav = () => (
   <nav className="bottom-nav">
@@ -7,6 +7,6 @@ const BottomNav = () => (
     <button>💼 Startups</button>
     <button>👤 Profile</button>
   </nav>
-);
+)
 
-export default BottomNav;
+export default BottomNav
