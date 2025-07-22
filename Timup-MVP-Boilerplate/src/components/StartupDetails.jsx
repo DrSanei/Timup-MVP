@@ -33,6 +33,7 @@ const StartupDetails = () => {
     expensesChart: "Sample Chart",
     riskScore: "Moderate",
     industryTrend: "↑ HealthTech +12%",
+    
   }
 
   const chartData = {
@@ -49,8 +50,10 @@ const StartupDetails = () => {
   return (
     <div className="startup-details">
       <h2>{startup.name}</h2>
-      <p><strong>Category:</strong> {startup.category} | <strong>Stage:</strong> {startup.stage}</p>
-      <p><strong>Valuation:</strong> {startup.valuation} | <strong>Seeking:</strong> {startup.seeking}</p>
+      <p><strong>Category:</strong> {startup.category}<p></p>
+      <p></p><strong>Stage:</strong> {startup.stage}</p>
+      <p><strong>Valuation:</strong> {startup.valuation}<p>
+      </p> <strong>Seeking:</strong> {startup.seeking}</p>
       <p><strong>Key Performance Indicators:</strong> {startup.KPIs.join(' | ')}</p>
       <p><strong>AI Predicted Success Rate:</strong> {startup.aiSuccessRate}</p>
 
@@ -72,15 +75,6 @@ const StartupDetails = () => {
         {startup.milestones.map((m, i) => <li key={i}>{m}</li>)}
       </ul>
 
-      <h4>📋 Open Projects</h4>
-      {startup.projects.map((p, i) => (
-        <div key={i} className="project-card">
-          <strong>{p.title}</strong>
-          <p>Skills: {p.skills}</p>
-          <p>Time: {p.hours} hours</p>
-          <p>Reward: {p.reward}</p>
-        </div>
-      ))}
 
       <h4>👥 Team</h4>
       {startup.team.map((t, i) => (
@@ -88,7 +82,7 @@ const StartupDetails = () => {
       ))}
 
       <h4>💸 Investment Section</h4>
-      <div className="chart-container" style={{ width: '300px', height: '300px', margin: '0 auto' }}>
+      <div className="chart-container" style={{ width: '250px', height: '250px', margin: '0 auto' }}>
       <Pie data={chartData} />
       <p style={{ textAlign: 'center' }}><strong>Total Expenses:</strong> $100,000</p>
       </div>
@@ -97,6 +91,16 @@ const StartupDetails = () => {
       <h4>🧠 Risk & Score</h4>
       <p>Risk Level: {startup.riskScore}</p>
       <p>Industry Trend: {startup.industryTrend}</p>
+      <h4>📋 Open Projects</h4>
+
+      {startup.projects.map((p, i) => (
+        <div key={i} className="project-card">
+          <strong>{p.title}</strong>
+          <p>Skills: {p.skills}</p>
+          <p>Time: {p.hours} hours</p>
+          <p>Reward: {p.reward}</p>
+        </div>
+      ))}
 
       <div className="action-buttons fixed-action">
         <button>Invest Time</button>

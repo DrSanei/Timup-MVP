@@ -1,0 +1,142 @@
+.my-investments {
+  padding: 16px;
+  color: #f0f0f0;
+  background: #1e1e1e;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance {
+  font-weight: bold;
+  color: #00ff9d;
+}
+
+.assets {
+  margin-bottom: 20px;
+}
+
+.asset-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c2c2c;
+  padding: 8px 12px;
+  margin: 4px 0;
+  border-radius: 8px;
+}
+
+.asset-line button {
+  margin-left: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.investment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.investment-card {
+  background: #2c2c2c;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.card-buttons-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.card-buttons-row .blue {
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  flex: 1;
+  margin: 4px;
+  font-weight: bold;
+}
+
+.card-buttons-row .green {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 16px;
+  font-size: 20px;
+  border-radius: 50%;
+  border: none;
+}
+
+.timer-section {
+  text-align: center;
+  margin-left: auto;
+}
+
+.timer-count {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #aaa;
+}
+
+.slider-section {
+  margin-top: 8px;
+}
+
+.slider-section input[type="range"] {
+  width: 100%;
+}
+
+.wide.invest-time {
+  background: #337ab7;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.time-spent {
+  font-style: italic;
+  color: #ccc;
+}
+
+.red {
+  color: #ff4d4d;
+}
+
+.row-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer-inline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+}
+.green {
+  background-color: #27ae60; /* vibrant green */
+  color: white;
+  padding: 16px;
+  font-size: 20px;
+  border-radius: 50%;
+  border: none;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
