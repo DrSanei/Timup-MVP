@@ -1,0 +1,80 @@
+.startup-card {
+  background: #2c2c2c;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  color: #f0f0f0;
+  position: relative; /* For positioning social buttons */
+}
+
+.startup-card h3 {
+  margin: 4px 0; /* Closer spacing for heading */
+  font-size: 1.2em;
+}
+
+.startup-card p {
+  margin: 4px 0; /* Closer spacing for paragraphs */
+  line-height: 1.3; /* Tightens the text layout */
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the right */
+  gap: 8px;
+  margin-top: 8px; /* Space above social buttons */
+  position: absolute;
+  bottom: 60px; /* Adjust based on action-buttons height */
+  right: 12px; /* Sticks to the right edge */
+}
+
+.social-btn {
+  color: #841313;
+  background-color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: rgb(156, 38, 38);
+  font-weight: bold;
+  cursor: pointer;
+  width: 30px; /* Fixed width for icon buttons */
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btn.liked {
+  background: #ff4d4d; /* Red background when liked */
+}
+
+.social-btn:hover {
+  background: #009d7a;
+}
+
+.social-btn.liked:hover {
+  background: #cc0000; /* Darker red on hover when liked */
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.action-btn {
+  background: #4a90e2;
+  border: none;
+  background-color: #373737;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+.action-btn:hover {
+  background: #357abd;
+}
