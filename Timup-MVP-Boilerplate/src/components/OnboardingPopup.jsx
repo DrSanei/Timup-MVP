@@ -6,10 +6,14 @@ const OnboardingPopup = ({ onClose }) => {
     <div className="popup-overlay">
       <div className="popup-box">
         <h3>Welcome to Timup</h3>
-        <p>Invest your time or money in ideas and teams and earn your fortune.</p>
+        <div className="onboarding-steps">
+          <p>Invest your time or money</p>
+          <p>Help others grow</p>
+          <p>Earn your fortune</p>
+        </div>
         <div className="popup-buttons">
-          <button onClick={onClose}>Not interested</button>
-          <button onClick={onClose}>Let`s Go!</button>
+          <button className="not-interested-btn" onClick={onClose}>Not interested</button>
+          <button className="lets-go-btn" onClick={onClose}>Let`s Go!</button>
         </div>
       </div>
     </div>

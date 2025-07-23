@@ -1,7 +1,8 @@
 /* popup */
 .popup-overlay {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.5);
@@ -11,24 +12,56 @@
   justify-content: center;
 }
 
-
 .popup-box {
-  background: white;
+  background: rgba(228, 228, 228, 0.942);
   border-radius: 12px;
   padding: 24px;
   width: 60vw;
   max-width: 340px;
+  font-size: 20px;
   text-align: center;
   box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-  color: #333; /* ✅ This is valid now */
+  color: #333;
 }
 
+.onboarding-steps {
+  margin: 12px 0; /* Space above and below the steps */
+}
+
+.onboarding-steps p {
+  margin: 4px 0; /* Closer spacing between steps */
+  font-weight: bold; /* Optional: Makes steps stand out */
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-around; /* Evenly spaces the buttons */
+}
 
 .popup-buttons button {
   margin: 10px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 8px;
   cursor: pointer;
   border: none;
+}
+
+.not-interested-btn {
+  background: transparent; /* Transparent background */
+  color: #333; /* Matches text color for visibility */
+}
+
+.not-interested-btn:hover {
+  background: rgba(0,0,0,0.1); /* Slight hover effect for feedback */
+  color: #000; /* Darker text on hover */
+}
+
+.lets-go-btn {
+  background: #7d9abb; /* Keeps the original styled background */
+  color: white; /* White text for contrast */
+}
+
+.lets-go-btn:hover {
+  background: #4d687c; /* Darker shade on hover */
 }

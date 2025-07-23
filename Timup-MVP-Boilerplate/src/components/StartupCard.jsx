@@ -15,10 +15,10 @@ const StartupCard = ({ id, name, category, value }) => {
       <p>Team: ${value}M</p>
       <p>Timup is a gamified platform and startup “metaverse” where users can invest either time or money into early-stage startups via AI-powered dynamic share allocations, earning real equity, virtual assets, and reputation as startups succeed.</p>
 
-      <div className="social-icons">
-        <button onClick={() => setLiked(!liked)} className={liked ? 'icon liked' : 'icon'}>❤️</button>
-        <button className="icon">🔗</button>
-        <button className="icon">💬</button>
+      <div className="social-buttons">
+        <button onClick={() => setLiked(!liked)} className={liked ? 'social-btn' : 'social-btn'}>❤️</button>
+        <button className="social-btn">🔗</button>
+        <button className="social-btn">💬</button>
       </div>
 
       <div className="startup-buttons">

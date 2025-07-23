@@ -5,6 +5,8 @@ import StartupDetails from './components/StartupDetails'
 import BottomNav from './components/BottomNav'
 import OnboardingPopup from './components/OnboardingPopup'
 import MyInvestments from './components/MyInvestments'
+import Profile from './components/Profile'
+import Feeds from './components/Feeds'
 import './App.css'
 
 function App() {
@@ -28,8 +30,8 @@ function App() {
         <Route path="/" element={<Dashboard xp={xp} tokens={tokens} />} />
         <Route path="/startup/:id" element={<StartupDetails onInvest={handleInvest} />} />
         <Route path="/investments" element={<MyInvestments onInvest={handleInvest} />} />
-        <Route path="/feeds" element={<div>Feeds (Leaderboards/News)</div>} />
-        <Route path="/profile" element={<div>Profile + Wallet (Coming soon)</div>} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/feeds" element={<Feeds />} /> 
       </Routes>
       <BottomNav />
     </div>

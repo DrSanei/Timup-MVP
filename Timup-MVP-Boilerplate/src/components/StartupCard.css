@@ -20,42 +20,41 @@
 
 .social-buttons {
   display: flex;
-  justify-content: flex-end; /* Aligns buttons to the right */
-  gap: 8px;
-  margin-top: 8px; /* Space above social buttons */
-  position: absolute;
-  bottom: 60px; /* Adjust based on action-buttons height */
-  right: 12px; /* Sticks to the right edge */
+  justify-content: left ; /* Centered for profile, adjust as needed */
+  align-items: left
+  gap: 16px;
+  margin: 8px 0; /* Space around social buttons */
 }
 
 .social-btn {
-  color: #841313;
-  background-color: white;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  color: rgb(156, 38, 38);
-  font-weight: bold;
-  cursor: pointer;
-  width: 30px; /* Fixed width for icon buttons */
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: transparent !important; /* Overrides inherited background */
+  background-color: transparent;
+  border: 0px solid #00b894 !important; /* Overrides inherited border */
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  color: #00b894 !important; /* Overrides inherited color */
+  font-weight: bold !important;
+  cursor: pointer !important;
+  width: 30px !important;
+  height: 30px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .social-btn.liked {
-  background: #ff4d4d; /* Red background when liked */
+  background: transparent !important;
+  color: #ff4d4d !important;
+  border-color: #ff4d4d !important;
 }
 
 .social-btn:hover {
-  background: #009d7a;
+  background: rgba(0, 184, 148, 0.1) !important;
 }
 
 .social-btn.liked:hover {
-  background: #cc0000; /* Darker red on hover when liked */
+  background: rgba(255, 77, 77, 0.1) !important;
 }
-
 .action-buttons {
   display: flex;
   justify-content: space-between;

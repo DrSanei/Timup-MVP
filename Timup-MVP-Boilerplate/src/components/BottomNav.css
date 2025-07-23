@@ -4,12 +4,12 @@
   left: 0;
   right: 0;
   height: 60px;
-  background: #313131; /* ✅ dark background */
+  background: #b3b2b2; /* Light background */
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid #444;
-  border-radius: 10px 10px 0 0; /* ✅ rounded top corners */
+  border-radius: 10px 10px 0 0; /* rounded top corners */
   z-index: 1000;
   box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.3);
 }

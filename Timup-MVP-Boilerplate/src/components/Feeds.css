@@ -1,0 +1,45 @@
+.feeds-page {
+  padding: 20px;
+  background: #1e1e1e;
+  min-height: 100vh;
+  color: #f0f0f0;
+  box-sizing: border-box;
+}
+
+.tab-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.tab-bar button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 4px;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.tab-bar .active {
+  background: #393945;
+}
+
+.news-card, .leader-card {
+  background: #2c2c2c;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.social-icons {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
