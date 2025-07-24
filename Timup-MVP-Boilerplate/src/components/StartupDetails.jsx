@@ -54,13 +54,10 @@ const StartupDetails = () => {
     <div className="startup-details">
       <h2>{startup.name}</h2>
       <p>
-        <strong>Category:</strong> {startup.category}
+        <strong>Market:</strong> {startup.category}
       </p>
       <p>
         <strong>Stage:</strong> {startup.stage}
-      </p>
-      <p>
-        <strong>Key Performance Indicators:</strong> {startup.KPIs.join(' | ')}
       </p>
       <p>
         <strong>AI Predicted Success Rate:</strong> {startup.aiSuccessRate}
@@ -90,7 +87,6 @@ const StartupDetails = () => {
         </p>
       </div>
      
-     
       <h4>👥 Team</h4>
       {startup.team.map((t, i) => (
         <p key={i}>
@@ -107,6 +103,9 @@ const StartupDetails = () => {
           allowFullScreen
         ></iframe>
       </div>
+      <p>
+        <strong>Key Performance Indicators:</strong> {startup.KPIs.join(' | ')}
+      </p>
       <h4>🧠 Risk & Score</h4>
       <p>Risk Level: {startup.riskScore}</p>
       <p>Industry Trend: {startup.industryTrend}</p>
@@ -121,8 +120,8 @@ const StartupDetails = () => {
         </div>
       ))}
       <div className="action-buttons fixed-action">
-        <button>Invest Time</button>
         <button>Invest Money</button>
+        <button>Invest Time</button>
       </div>
     </div>
   )

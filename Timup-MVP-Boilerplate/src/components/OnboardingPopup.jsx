@@ -5,7 +5,7 @@ const OnboardingPopup = ({ onClose }) => {
   return (
     <div className="popup-overlay">
       <div className="popup-box">
-        <h3>Welcome to Timup</h3>
+        <h3>Timup</h3>
         <div className="onboarding-steps">
           <p>Invest your time or money</p>
           <p>Help others grow</p>

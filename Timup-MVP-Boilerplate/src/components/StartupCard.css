@@ -77,3 +77,49 @@
 .action-btn:hover {
   background: #357abd;
 }
+
+/* Make view/news buttons transparent with dark text */
+.transparent-btn {
+  background-color: transparent;
+  color: #4d5178;
+  border: 0px solid transparent;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+.transparent-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Row for the two top buttons */
+.top-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Row for the two blue buttons */
+.invest-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Blue action buttons */
+.blue-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+.blue-btn:hover {
+  background-color: #0069d9;
+}

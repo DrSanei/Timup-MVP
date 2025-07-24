@@ -1,0 +1,79 @@
+.dashboard-container {
+  padding: 16px;
+  background: #2c2c2c;
+  color: #f0f0f0;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  margin-bottom: 16px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.xp-tokens {
+  margin: 0;
+}
+
+.market-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.market-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.market-tabs .tab {
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+
+.market-tabs .tab.active {
+  background: #007bff;
+  color: #fff;
+}
+
+.market-tabs .tab:hover {
+  background: #555;
+}
+
+.search-bar {
+  margin-top: 12px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #333;
+  color: #f0f0f0;
+}
+
+.startup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.error-message {
+  color: #ff4d4d;
+  text-align: center;
+  padding: 20px;
+}
