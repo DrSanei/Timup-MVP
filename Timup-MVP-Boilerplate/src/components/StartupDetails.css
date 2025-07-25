@@ -63,3 +63,70 @@ button {
   justify-content: space-around;
   z-index: 1000;
 }
+.project-row-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.read-more-btn {
+  /* Keep your original "Read more" button styles, or adjust as needed */
+  background: transparent;
+  color: #007bff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.invest-time-btn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  /* Optional: add a little shadow or effect for emphasis */
+}
+/* Back button styles */
+.back-btn {
+  background: #2c2c2c;
+  color: #d2d5d7;
+   border: 1.5px solid #d2d5d7;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  bottom: 68px;
+}
+
+/* Invest Money button styles */
+.invest-money-btn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 8px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  bottom: 68px; 
+   width: 50%;  
+   max-width: 80%;  
+   align-items: center;
+  justify-content: center;
+  left: 25%;
+ outline: none;
+  
+}
+.invest-money-btn:hover {
+  background: #0056b3;
+}

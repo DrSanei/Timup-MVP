@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA-ci0_NXe3xz2TOt8yj2j__vv6hdIU2d8",
+  apiKey: "AIzaSyA-ci0_NXe3xz2TOt8yj2j__vv6hdIU2d8", 
   authDomain: "timup-mvp.firebaseapp.com",
   projectId: "timup-mvp",
   storageBucket: "timup-mvp.firebasestorage.app",

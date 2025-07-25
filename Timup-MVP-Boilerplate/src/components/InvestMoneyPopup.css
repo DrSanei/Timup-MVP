@@ -1,0 +1,113 @@
+.popup-overlay {
+  position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.22); z-index: 1002;
+}
+
+.invest-popup {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100vw; max-width: 480px;
+  background: #fff;
+  border-radius: 22px 22px 0 0;
+  padding: 32px 18px 22px 18px;
+  box-shadow: 0 -4px 28px rgba(0,0,0,0.16);
+  z-index: 1003;
+  animation: popup-in 0.23s cubic-bezier(.4,1.2,.2,1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@keyframes popup-in {
+  0% { transform: translateX(-50%) translateY(120px); opacity: 0.2; }
+  100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+h3 {
+  margin: 0 0 10px 0;
+  color: #0d1931;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 6px 0 0 0;
+  justify-content: space-between;
+}
+.input-row label {
+  min-width: 100px;
+  font-size: 1rem;
+}
+.input-row input[type="number"] {
+  width: 80px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #b3b8c2;
+  padding: 4px 8px;
+  margin-left: 5px;
+}
+.input-row input[type="range"] {
+  flex: 1;
+  margin: 0 6px;
+}
+
+.read-contract-btn {
+  background: transparent;
+  color: #14649c;
+  border: none;
+  text-decoration: underline;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 14px 0 6px 0;
+  padding: 0;
+  align-self: flex-start;
+}
+
+.confirm-btn {
+  width: 100%;
+  background: #16c478;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 18px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.confirm-btn:hover {
+  background: #10a664;
+}
+
+.success-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 120px;
+  transform: translateX(-50%);
+  background: #16c478;
+  color: #fff;
+  padding: 18px 26px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 1004;
+  animation: toast-up 0.6s, toast-down 0.7s 1.2s forwards;
+}
+@keyframes toast-up { 0% { opacity: 0; bottom: 80px; } 100% { opacity: 1; bottom: 120px; } }
+@keyframes toast-down { 0% { opacity: 1; } 100% { opacity: 0; bottom: 140px; } }
+
+.close-btn {
+  position: absolute;
+  top: 10px; right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #bbb;
+  cursor: pointer;
+  padding: 0;
+}
+.close-btn:hover { color: #444; }

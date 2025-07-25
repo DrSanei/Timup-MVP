@@ -1,10 +1,12 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { Pie } from 'react-chartjs-2'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import './StartupDetails.css'
+import React, { useState, useEffect } from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import InvestMoneyPopup from '../components/InvestMoneyPopup';
+import CallToActionPopup from '../components/CallToActionPopup'; 
+import './StartupDetails.css';
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const chartData = {
   labels: ['R&D', 'Marketing', 'Operations', 'Other'],
@@ -15,15 +17,29 @@ const chartData = {
       borderWidth: 1,
     },
   ],
-}
+};
 
 const options = {
   responsive: true,
   maintainAspectRatio: false, // Allows custom height and width
-}
+};
 
 const StartupDetails = () => {
-  const { id } = useParams()
+  const navigate = useNavigate();
+  const [showInvestPopup, setShowInvestPopup] = useState(false);
+  const location = useLocation();
+  const { id } = useParams();
+  const [showCta, setShowCta] = useState(false);
+
+
+  useEffect(() => {
+    if (location.hash) {
+      const section = document.querySelector(location.hash);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location]);
 
   // Dummy data for illustration
   const startup = {
@@ -36,8 +52,8 @@ const StartupDetails = () => {
     milestones: ['MVP Ready', '10K Users', '$8K MRR'],
     KPIs: ['Customer Acquisition Cost: $20', 'Churn Rate: 10%', 'Burn Rate: $20,000 per month'],
     projects: [
-      { title: 'Design Landing Page', skills: 'React, Figma', hours: 10, reward: '$100 / 2x shares' },
-      { title: 'API Integration', skills: 'Node.js', hours: 15, reward: '$150 / 2x shares' },
+      { title: 'Design Landing Page', skills: 'React, Figma', hours: 10, reward: '$1000 / 2x shares' },
+      { title: 'API Integration', skills: 'Node.js', hours: 15, reward: '$1150 / 2x shares' },
     ],
     team: [
       { name: 'Mohamad', role: 'Founder', time: '20h/week' },
@@ -46,9 +62,9 @@ const StartupDetails = () => {
     expensesChart: 'Sample Chart',
     riskScore: 'Moderate',
     industryTrend: '↑ HealthTech +12%',
-    pitchVideoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    pitchVideoUrl: 'https://www.youtube.com/embed/7a_lu7ilpnI',
     whitePaper: 'https://example.com/whitepaper.pdf',
-  }
+  };
 
   return (
     <div className="startup-details">
@@ -109,22 +125,27 @@ const StartupDetails = () => {
       <h4>🧠 Risk & Score</h4>
       <p>Risk Level: {startup.riskScore}</p>
       <p>Industry Trend: {startup.industryTrend}</p>
-      <h4>📋 Open Projects</h4>
+      <h4 id="open-projects-section">📋 Open Projects</h4>
       {startup.projects.map((p, i) => (
         <div key={i} className="project-card">
           <strong>{p.title}</strong>
           <p>Skills: {p.skills}</p>
           <p>Time: {p.hours} hours</p>
           <p>Reward: {p.reward},</p>
-          <button>Read more ...</button>
+          <div className="project-row-actions">
+            <button className="read-more-btn">Read more ...</button>
+            <button className="invest-time-btn" onClick={() => setShowCta(true)}>Invest Time</button>
+          </div>
+          {showCta && <CallToActionPopup onClose={() => setShowCta(false)} />}
         </div>
       ))}
-      <div className="action-buttons fixed-action">
-        <button>Invest Money</button>
-        <button>Invest Time</button>
+      <div className="project-row-actions">
+        <button className="back-btn fixed-action" onClick={() => navigate(-1)}>&lt;</button>
+        <button className="invest-money-btn fixed-action" onClick={() => setShowInvestPopup(true)}>Invest Money</button>
       </div>
+      {showInvestPopup && <InvestMoneyPopup onClose={() => setShowInvestPopup(false)} />}
     </div>
-  )
+  );
 }
 
-export default StartupDetails
+export default StartupDetails;

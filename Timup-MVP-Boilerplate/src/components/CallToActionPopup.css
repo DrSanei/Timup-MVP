@@ -49,3 +49,32 @@
   color: #fff;
 }
 .cta-btn.no:hover { background: #b63122; }
+.cta-btn.yes-add {
+  background: #30b8ea;
+  color: #fff;
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  width: 100%;
+}
+.cta-btn.yes-add:hover {
+  background: #157ebc;
+}
+.popup-buttons-row.lower-row {
+  justify-content: center;
+  margin-top: 10px;
+}
+.thank-you-toast {
+  margin-top: 18px;
+  background: #16c478;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1em;
+  animation: fadeOut 1.1s 0.7s forwards;
+}
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}

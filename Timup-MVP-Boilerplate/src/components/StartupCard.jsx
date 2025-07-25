@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InvestMoneyPopup from './InvestMoneyPopup';
 import './StartupCard.css';
 
 const StartupCard = ({ id, name, category, value, openCTA }) => {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
-
+  const [showInvestPopup, setShowInvestPopup] = useState(false);
+  
   // Placeholder for team (to be replaced with actual team prop if added)
-  const teamPlaceholder = `Team of ${value}M valuation`; // Temporary fix
+  const teamPlaceholder = `4`; // Temporary fix
   return (
     <div className="startup-card">
   <h3>{name}</h3>
@@ -25,11 +27,14 @@ const StartupCard = ({ id, name, category, value, openCTA }) => {
 
     <div className="top-buttons">
         <button className="transparent-btn" onClick={() => navigate(`/startup/${id}`)}>More Details</button>
-        <button className="transparent-btn" onClick={openCTA}>Recent News</button>
+        <button className="transparent-btn" onClick={() => navigate("/feeds")}>Recent News</button>
+
       </div>
       <div className="invest-buttons">
-        <button className="blue-btn" onClick={openCTA}>Invest Money</button>
-        <button className="blue-btn" onClick={openCTA}>Invest Time (2x)</button>
+        <button className="blue-btn" onClick={() => setShowInvestPopup(true)}>Invest Money</button>
+        {showInvestPopup && <InvestMoneyPopup onClose={() => setShowInvestPopup(false)} />}
+        <button className="blue-btn" onClick={() => navigate(`/startup/${id}#open-projects-section`)}>Invest Time (2x)</button>
+
       </div>
 </div>
 

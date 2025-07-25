@@ -79,15 +79,20 @@
 }
 
 .timer-section {
-  text-align: center;
-  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;   /* right-align both elements */
+  margin-left: auto;       /* push section to the right in flex parent */
 }
+
 
 .timer-count {
   font-size: 12px;
   margin-top: 4px;
   color: #aaa;
+  text-align: right;       /* right-align text */
 }
+
 
 .slider-section {
   margin-top: 8px;
