@@ -25,7 +25,7 @@ const CallToActionPopup = ({ onClose }) => {
     return (
       <div className="popup-overlay">
         <div className="popup-box">
-          <h3>Join the Waiting List</h3>
+          <h3>We are happy to have you on our Waiting List</h3>
           <form onSubmit={handleSubmit}>
             <input
               type="email"
@@ -47,7 +47,7 @@ const CallToActionPopup = ({ onClose }) => {
   return (
     <div className="popup-overlay">
       <div className="popup-box">
-        <h3>Feedback</h3>
+        <h3>This very first version of Timup is developed to know your feedback</h3>
         <p style={{ marginBottom: 24 }}>Do you like this app?</p>
         <div className="popup-buttons-row">
           <button onClick={handleFeedbackClick} className="cta-btn no">Not at all</button>

@@ -8,7 +8,7 @@
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: 100vw; max-width: 480px;
+  width: 90vw; max-width: 480px;
   background: #fff;
   border-radius: 22px 22px 0 0;
   padding: 32px 18px 22px 18px;
