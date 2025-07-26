@@ -67,8 +67,13 @@ const StartupDetails = () => {
   };
 
   return (
+    
     <div className="startup-details">
-      <h2>{startup.name}</h2>
+      <div className="header-bar">
+        <button className="header-back-btn" onClick={() => navigate(-1)}>&lt;</button>
+        <h2 className="header-title">{startup.name}</h2>
+    </div>
+     
       <p>
         <strong>Market:</strong> {startup.category}
       </p>

@@ -33,6 +33,9 @@ const Feeds = () => {
 
   return (
     <div className="feeds-page">
+      <div className="header-bar">
+      < h2 className="header-title"> 📢 Feeds</h2>
+        </div>  
       <div className="tab-bar">
         <button onClick={() => setTab("news")} className={tab === "news" ? "active" : ""}>News</button>
         <button onClick={() => setTab("leaderboard")} className={tab === "leaderboard" ? "active" : ""}>Leaderboard</button>

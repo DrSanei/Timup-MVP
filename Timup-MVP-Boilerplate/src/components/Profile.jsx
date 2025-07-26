@@ -63,7 +63,10 @@ const Profile = () => {
 
   return (
     <div className="profile-page">
-      <h2>👤 My Profile</h2>
+       <div className="header-bar">
+      < h2 className="header-title">🙎 My Profile</h2>
+        </div>  
+      
       <div className="profile-section">
         <div className="profile-photo-placeholder">👤</div>
         <p><strong>Anathema2022</strong></p>

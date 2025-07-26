@@ -8,19 +8,32 @@ const BottomNav = () => {
 
   return (
     <div className="bottom-nav">
-      <Link to="/" className={location.pathname === "/" ? "active" : ""}>
-        <FaStore />
-      </Link>
-      <Link to="/investments" className={location.pathname === "/investments" ? "active" : ""}>
-        <FaWallet />
-      </Link>
-      <Link to="/feeds" className={location.pathname === "/feeds" ? "active" : ""}>
-        <FaNewspaper />
-      </Link>
-      <Link to="/profile" className={location.pathname === "/profile" ? "active" : ""}>
-        <FaUser />
-      </Link>
-    </div>
+  <div className="nav-item">
+    <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+      <FaStore />
+    </Link>
+    <span className="nav-label">Market</span>
+  </div>
+  <div className="nav-item">
+    <Link to="/investments" className={location.pathname === "/investments" ? "active" : ""}>
+      <FaWallet />
+    </Link>
+    <span className="nav-label">My Investments</span>
+  </div>
+  <div className="nav-item">
+    <Link to="/feeds" className={location.pathname === "/feeds" ? "active" : ""}>
+      <FaNewspaper />
+    </Link>
+    <span className="nav-label">Feeds</span>
+  </div>
+  <div className="nav-item">
+    <Link to="/profile" className={location.pathname === "/profile" ? "active" : ""}>
+      <FaUser />
+    </Link>
+    <span className="nav-label">Profile</span>
+  </div>
+</div>
+
   )
 }
 

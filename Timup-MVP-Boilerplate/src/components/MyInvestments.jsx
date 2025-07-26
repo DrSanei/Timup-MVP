@@ -40,12 +40,14 @@ const MyInvestments = () => {
   const totalBalance = 8000 + 4000 + 230 + 340 + 480
 
   return (
-    <div className="my-investments">
-      <div className="header-row">
-        <h2>My Investments</h2>
-        <p className="balance">💰 Balance: ${totalBalance}</p>
-      </div>
+    
 
+    <div className="my-investments">
+      <div className="header-bar">
+    <span className="header-title">🏦My Investments</span>
+    <span className="balance">💰Balance:${totalBalance}</span>
+    </div>  
+      
       <div className="assets">
         <p><strong>Assets:</strong></p>
         <div className="asset-line">

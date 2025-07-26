@@ -22,5 +22,47 @@
 }
 
 .bottom-nav a.active {
-  color: #000; /* Highlight active icon */
+  color: #4a3bba; /* Highlight active icon */
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.nav-label {
+  font-size: 11px;
+  margin-top: 2px;
+  color: #555;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 22px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 54px;
+  background: #222;
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1010;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.11);
+  padding: 0 16px;
 }

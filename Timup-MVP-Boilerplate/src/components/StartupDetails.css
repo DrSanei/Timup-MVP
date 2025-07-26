@@ -1,16 +1,18 @@
 .startup-details {
   padding: 20px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   color: #f0f0f0;
   background: #1e1e1e;
   min-height: 100vh;
   box-sizing: border-box;
   overflow-y: auto;
+  padding-top: 68px;
 }
 
 .startup-details h2 {
-  margin-top: 0;
-  color: #fff;
+    color: #fff;
+    
+    
 }
 
 .project-card {
@@ -91,7 +93,7 @@ button {
   border-radius: 4px;
   /* Optional: add a little shadow or effect for emphasis */
 }
-/* Back button styles */
+/* Back button Not active 
 .back-btn {
   background: #2c2c2c;
   color: #d2d5d7;
@@ -106,7 +108,7 @@ button {
   justify-content: center;
   cursor: pointer;
   bottom: 68px;
-}
+} */
 
 /* Invest Money button styles */
 .invest-money-btn {
@@ -129,4 +131,33 @@ button {
 }
 .invest-money-btn:hover {
   background: #0056b3;
+}
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 0;
+  height: 54px;
+  background: #1e1e1e;
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1010;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.11);
+  padding: 0 0;
+  box-sizing: border-box;
+}
+.header-title {
+  color: #f0f0f0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 auto;
+  
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
