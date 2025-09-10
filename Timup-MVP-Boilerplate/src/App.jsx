@@ -9,6 +9,7 @@ import Profile from './components/Profile';
 import Feeds from './components/Feeds';
 import { seedStartups } from './utils/seedStartups'; // Verify this path
 import './App.css';
+import { logVisit } from './Lib/analytics'; // ⬅️ FIXED PATH
 
 function App() {
   const [xp, setXp] = useState(0);
@@ -25,6 +26,10 @@ function App() {
     }
   }, []);
 
+  // Minimal visit log (once on first load)
+  useEffect(() => {
+    logVisit({ path: window.location.pathname + window.location.hash });
+  }, []);
 
   const handleInvest = ({ type, amount }) => {
     if (type === 'time') {
@@ -51,4 +56,3 @@ function App() {
 }
 
 export default App;
-

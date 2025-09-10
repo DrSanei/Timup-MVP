@@ -5,6 +5,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import InvestMoneyPopup from '../components/InvestMoneyPopup';
 import CallToActionPopup from '../components/CallToActionPopup'; 
 import './StartupDetails.css';
+import { supabase } from '../lib/supabaseClient'; // ⬅️ ADD
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -21,7 +22,7 @@ const chartData = {
 
 const options = {
   responsive: true,
-  maintainAspectRatio: false, // Allows custom height and width
+  maintainAspectRatio: false,
 };
 
 const StartupDetails = () => {
@@ -31,6 +32,68 @@ const StartupDetails = () => {
   const { id } = useParams();
   const [showCta, setShowCta] = useState(false);
 
+  // NEW: state for Supabase data
+  const [startup, setStartup] = useState(null);
+  const [projects, setProjects] = useState([]);
+
+  // Load from Supabase (fallback to dummy if not found)
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      // startup
+      const { data: s, error: se } = await supabase
+        .from('startups')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      // projects
+      const { data: ps, error: pe } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('startup_id', id)
+        .order('created_at', { ascending: true });
+
+      if (!isMounted) return;
+
+      if (s) {
+        setStartup({
+          // map fields with fallbacks to keep your UI unchanged
+          name: s.name || 'Startup',
+          category: s.category || '—',
+          stage: s.stage || '—',
+          valuation: s.valuation_usd ? `$${Number(s.valuation_usd).toLocaleString()}` : '—',
+          seeking: s.seeking_usd ? `$${Number(s.seeking_usd).toLocaleString()}` : '—',
+          aiSuccessRate: s.ai_success_rate != null ? `${s.ai_success_rate}%` : '—',
+          milestones: ['MVP Ready', '10K Users', '$8K MRR'],
+          KPIs: ['Customer Acquisition Cost: $20', 'Churn Rate: 10%', 'Burn Rate: $20,000 per month'],
+          team: [
+            { name: 'Mohamad', role: 'Founder', time: '20h/week' },
+            { name: 'Ladan', role: 'CTO', time: '15h/week' },
+          ],
+          expensesChart: 'Sample Chart',
+          riskScore: 'Moderate',
+          industryTrend: '↑ HealthTech +12%',
+          pitchVideoUrl: 'https://www.youtube.com/embed/7a_lu7ilpnI',
+          whitePaper: 'https://example.com/whitepaper.pdf',
+        });
+      }
+
+      if (ps && ps.length) {
+        setProjects(
+          ps.map(p => ({
+            // keep your UI keys
+            title: p.title,
+            skills: p.skills || '—',
+            hours: p.hours ?? '—',
+            reward: p.reward_text || '—',
+          }))
+        );
+      }
+    })();
+
+    return () => { isMounted = false; };
+  }, [id]);
 
   useEffect(() => {
     if (location.hash) {
@@ -41,8 +104,8 @@ const StartupDetails = () => {
     }
   }, [location]);
 
-  // Dummy data for illustration
-  const startup = {
+  // Fallback dummy if Supabase didn't load a startup row yet
+  const fallbackStartup = {
     name: 'MediTrack',
     category: 'HealthTech',
     stage: 'Seed',
@@ -51,10 +114,6 @@ const StartupDetails = () => {
     aiSuccessRate: '83%',
     milestones: ['MVP Ready', '10K Users', '$8K MRR'],
     KPIs: ['Customer Acquisition Cost: $20', 'Churn Rate: 10%', 'Burn Rate: $20,000 per month'],
-    projects: [
-      { title: 'Design Landing Page', skills: 'React, Figma', hours: 10, reward: '$1000 / 2x shares' },
-      { title: 'API Integration', skills: 'Node.js', hours: 15, reward: '$1150 / 2x shares' },
-    ],
     team: [
       { name: 'Mohamad', role: 'Founder', time: '20h/week' },
       { name: 'Ladan', role: 'CTO', time: '15h/week' },
@@ -66,72 +125,67 @@ const StartupDetails = () => {
     whitePaper: 'https://example.com/whitepaper.pdf',
   };
 
+  const dataStartup = startup || fallbackStartup;
+
   return (
-    
     <div className="startup-details">
       <div className="header-bar">
         <button className="header-back-btn" onClick={() => navigate(-1)}>&lt;</button>
-        <h2 className="header-title">{startup.name}</h2>
-    </div>
-     
+        <h2 className="header-title">{dataStartup.name}</h2>
+      </div>
+
+      <p><strong>Market:</strong> {dataStartup.category}</p>
+      <p><strong>Stage:</strong> {dataStartup.stage}</p>
+      <p><strong>AI Predicted Success Rate:</strong> {dataStartup.aiSuccessRate}</p>
       <p>
-        <strong>Market:</strong> {startup.category}
-      </p>
-      <p>
-        <strong>Stage:</strong> {startup.stage}
-      </p>
-      <p>
-        <strong>AI Predicted Success Rate:</strong> {startup.aiSuccessRate}
-      </p>
-      <p>
-        <a href={startup.whitePaper} target="_blank" rel="noreferrer">
+        <a href={dataStartup.whitePaper} target="_blank" rel="noreferrer">
           📄 View White Paper
         </a>
       </p>
+
       <h4>🚀 Key Milestones</h4>
       <ul>
-        {startup.milestones.map((m, i) => (
-          <li key={i}>{m}</li>
-        ))}
+        {dataStartup.milestones.map((m, i) => <li key={i}>{m}</li>)}
       </ul>
+
       <h4>💸 Investment Section</h4>
-      <p>
-        <strong>Valuation:</strong> {startup.valuation}
-      </p>
-      <p>
-        <strong>Seeking:</strong> {startup.seeking}
-      </p>
+      <p><strong>Valuation:</strong> {dataStartup.valuation}</p>
+      <p><strong>Seeking:</strong> {dataStartup.seeking}</p>
+
       <div className="chart-container" style={{ width: '250px', height: '250px', margin: '0 auto' }}>
         <Pie data={chartData} options={options} />
         <p style={{ textAlign: 'center' }}>
           <strong>Total Expenses:</strong> $100,000
         </p>
       </div>
-     
+
       <h4>👥 Team</h4>
-      {startup.team.map((t, i) => (
-        <p key={i}>
-          {t.name} — {t.role} ({t.time})
-        </p>
+      {dataStartup.team.map((t, i) => (
+        <p key={i}>{t.name} — {t.role} ({t.time})</p>
       ))}
+
       <div className="video-section">
         <iframe
           width="100%"
           height="200"
-          src={startup.pitchVideoUrl}
+          src={dataStartup.pitchVideoUrl}
           title="Pitch Video"
           frameBorder="0"
           allowFullScreen
         ></iframe>
       </div>
-      <p>
-        <strong>Key Performance Indicators:</strong> {startup.KPIs.join(' | ')}
-      </p>
+
+      <p><strong>Key Performance Indicators:</strong> {dataStartup.KPIs.join(' | ')}</p>
+
       <h4>🧠 Risk & Score</h4>
-      <p>Risk Level: {startup.riskScore}</p>
-      <p>Industry Trend: {startup.industryTrend}</p>
+      <p>Risk Level: {dataStartup.riskScore}</p>
+      <p>Industry Trend: {dataStartup.industryTrend}</p>
+
       <h4 id="open-projects-section">📋 Open Projects</h4>
-      {startup.projects.map((p, i) => (
+      {(projects.length ? projects : [
+        { title: 'Design Landing Page', skills: 'React, Figma', hours: 10, reward: '$1000 / 2x shares' },
+        { title: 'API Integration', skills: 'Node.js', hours: 15, reward: '$1150 / 2x shares' },
+      ]).map((p, i) => (
         <div key={i} className="project-card">
           <strong>{p.title}</strong>
           <p>Skills: {p.skills}</p>
@@ -144,10 +198,12 @@ const StartupDetails = () => {
           {showCta && <CallToActionPopup onClose={() => setShowCta(false)} />}
         </div>
       ))}
+
       <div className="project-row-actions">
         <button className="back-btn fixed-action" onClick={() => navigate(-1)}>&lt;</button>
         <button className="invest-money-btn fixed-action" onClick={() => setShowInvestPopup(true)}>Invest Money</button>
       </div>
+
       {showInvestPopup && <InvestMoneyPopup onClose={() => setShowInvestPopup(false)} />}
     </div>
   );

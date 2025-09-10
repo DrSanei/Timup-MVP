@@ -1,53 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, onSnapshot } from 'firebase/firestore';
-import StartupCard from './StartupCard';
-import './Dashboard.css';
+// src/components/Dashboard.jsx
+import React, { useState, useEffect } from 'react'
+import StartupCard from './StartupCard'
+import './Dashboard.css'
+
+// ⬇️ Use Supabase instead of Firestore
+import { supabase } from '../lib/supabaseClient'
 
 const Dashboard = ({ xp, tokens }) => {
-  const [startups, setStartups] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [startups, setStartups] = useState([])
+  const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    const db = getFirestore();
-    const startupsRef = collection(db, 'startups');
-    const unsubscribe = onSnapshot(
-      startupsRef,
-      (snapshot) => {
-        const startupsData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log('Fetched startups:', startupsData); // Debug log
-        setStartups(startupsData);
-        const uniqueCategories = ['All', ...new Set(startupsData.map((s) => s.category).filter(c => c))]; // Filter out undefined
-        console.log('Extracted categories:', uniqueCategories); // Debug categories
-        setCategories(uniqueCategories);
-        setLoading(false);
-      },
-      (error) => {
-        console.error('Error fetching startups:', error);
-        setError('Failed to load startups. Please try again later.');
-        setLoading(false);
+    let mounted = true
+
+    const load = async () => {
+      try {
+        // 1) Fetch startups
+        const { data, error } = await supabase.from('startups').select('*')
+        if (error) throw error
+
+        if (!mounted) return
+
+        const startupsData = data || []
+        setStartups(startupsData)
+
+        const uniqueCategories = [
+          'All',
+          ...new Set(startupsData.map((s) => s.category).filter(Boolean)),
+        ]
+        setCategories(uniqueCategories)
+
+        // 2) Log analytics: dashboard visit
+        await supabase.from('analytics_events').insert([
+          { event_type: 'visit', details: { page: 'dashboard' } },
+        ])
+
+        setLoading(false)
+      } catch (err) {
+        console.error('Error fetching startups:', err)
+        if (!mounted) return
+        setError('Failed to load startups. Please try again later.')
+        setLoading(false)
       }
-    );
+    }
 
-    return () => unsubscribe();
-  }, []);
+    load()
+    return () => {
+      mounted = false
+    }
+  }, [])
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Loading...</div>
+  if (error) return <div className="error-message">{error}</div>
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
-  }
-
-  const filteredStartups = selectedCategory === 'All'
-    ? startups
-    : startups.filter((startup) => startup.category === selectedCategory);
+  const filteredStartups =
+    selectedCategory === 'All'
+      ? startups
+      : startups.filter((startup) => startup.category === selectedCategory)
 
   return (
     <div className="dashboard-container">
@@ -89,7 +101,7 @@ const Dashboard = ({ xp, tokens }) => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
