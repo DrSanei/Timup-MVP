@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import StartupCard from './StartupCard'
 import './Dashboard.css'
-
-// ⬇️ Use Supabase instead of Firestore
+import { logVisit } from '../lib/analytics'
 import { supabase } from '../lib/supabaseClient'
 
 const Dashboard = ({ xp, tokens }) => {
@@ -13,12 +12,17 @@ const Dashboard = ({ xp, tokens }) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // ✅ moved here (inside component)
+  useEffect(() => { 
+    logVisit({ page: 'dashboard' }) 
+  }, [])
+
   useEffect(() => {
     let mounted = true
 
     const load = async () => {
       try {
-        // 1) Fetch startups
+        // 1) Fetch startups from Supabase
         const { data, error } = await supabase.from('startups').select('*')
         if (error) throw error
 
@@ -33,10 +37,11 @@ const Dashboard = ({ xp, tokens }) => {
         ]
         setCategories(uniqueCategories)
 
-        // 2) Log analytics: dashboard visit
-        await supabase.from('analytics_events').insert([
-          { event_type: 'visit', details: { page: 'dashboard' } },
-        ])
+        // (Optional) If you still log analytics rows via Supabase table,
+        // keep this; otherwise comment it out if the table doesn't exist:
+        // await supabase.from('analytics_events').insert([
+        //   { event_type: 'visit', details: { page: 'dashboard' } },
+        // ])
 
         setLoading(false)
       } catch (err) {
@@ -93,7 +98,8 @@ const Dashboard = ({ xp, tokens }) => {
               id={startup.id}
               name={startup.name || 'Unnamed Startup'}
               category={startup.category || 'Uncategorized'}
-              value={startup.value || 0}
+              // show something even if your table uses "valuation" instead of "value"
+              value={startup.value ?? startup.valuation ?? 0}
             />
           ))
         ) : (
