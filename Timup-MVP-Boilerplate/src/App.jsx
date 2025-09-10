@@ -9,7 +9,7 @@ import Profile from './components/Profile';
 import Feeds from './components/Feeds';
 import { seedStartups } from './utils/seedStartups'; // Verify this path
 import './App.css';
-import { logVisit } from './Lib/analytics'; // ⬅️ FIXED PATH
+import { logVisit } from './lib/analytics'; // ⬅️ FIXED PATH
 
 function App() {
   const [xp, setXp] = useState(0);
